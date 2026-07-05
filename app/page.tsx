@@ -1,7 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import { ShieldCheck } from "lucide-react";
 
 export default function Home() {
+  // Fungsi untuk mengirim data klik ke Meta Pixel sebelum terlempar ke halaman affiliate
+  const handleCtaClick = () => {
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Lead");
+    }
+  };
+
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center px-4 pt-6 pb-16 font-sans selection:bg-yellow-500 selection:text-black">
       {/* Container utama: Terkunci di ukuran HP (max-w-md) agar presisi di Facebook Mobile */}
@@ -55,6 +64,7 @@ export default function Home() {
             href="https://www.checkout-ds24.com/redir/656847/bangrentv/" 
             target="_blank" 
             rel="noopener noreferrer" 
+            onClick={handleCtaClick}
             className="w-full flex items-center justify-center text-center bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-black font-bold text-sm py-4 px-6 rounded-xl shadow-xl shadow-yellow-500/10 transition-all transform active:scale-[0.98] tracking-wide uppercase mb-4"
           >
             Access The TPP System Now →
